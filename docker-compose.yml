@@ -8,19 +8,19 @@ services:
     ports:
       - 5000:8080
       - 5001:8081
-    # environment:
-    #   OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger:4317"
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger:4317"
 
-  # keycloak.auth.proxy:
-  #   image: ${DOCKER_REGISTRY-}keycloakauthproxy
-  #   build:
-  #     context: .
-  #     dockerfile: src/Keycloak.Auth.Proxy/Dockerfile
-  #   ports:
-  #     - 6000:8080
-  #     - 6001:8081
-  #   environment:
-  #     OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger:4317"
+  keycloak.auth.proxy:
+    image: ${DOCKER_REGISTRY-}keycloakauthproxy
+    build:
+      context: .
+      dockerfile: src/Keycloak.Auth.Proxy/Dockerfile
+    ports:
+      - 6000:8080
+      - 6001:8081
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger:4317"
 
   keycloak:
     image: quay.io/keycloak/keycloak:latest
@@ -35,10 +35,10 @@ services:
     ports:
       - 18080:8080
 
-  # jaeger:
-  #   image: jaegertracing/all-in-one:latest
-  #   container_name: Jaeger
-  #   ports:
-  #     - 4317:4317
-  #     - 4318:4318
-  #     - 16686:16686
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: Jaeger
+    ports:
+      - 4317:4317
+      - 4318:4318
+      - 16686:16686
